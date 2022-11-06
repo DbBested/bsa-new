@@ -23,7 +23,7 @@ django-tailwind==2.2.2
 djangorestframework==3.14.0
 docopt==0.6.2
 et-xmlfile==1.1.0
-feedparser @ file:///C:/ci/feedparser_1636022667629/work
+feedparser==6.0.10
 filelock==3.8.0
 grpcio==1.50.0
 grpcio-tools==1.50.0
