@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>BSA</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="https://i.ibb.co/qr3Gjmx/BSA-Logo.png"/>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <script src="static/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/js/infinite.min.js"></script>
+        <link rel="stylesheet" href="static/searchstyles.css">
+        <script defer>
+            MathJax = {
+                tex:{
+                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg:{
+                    fontCache: 'global'
+                }
+            }
+        </script> 
+        <script id="MathJax"  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+    </head>
+    <div class="overlay" id="overlay1">
+        <div class="popup" id="popup1">
+            <img src="https://i.ibb.co/qr3Gjmx/BSA-Logo.png">
+            <h2>Read more</h2>
+            <button type="button" onclick="closePopup()"></button>
+        </div>  
+        <div class="slidein-right" id="slideinrt">
+            <button type="button" onclick="closeSlideinRight()">Back →</button>
+            <div class="si-top-right">
+                <p>Insert related papers here</p>
+            </div>
+            <div class="si-middle-right">
+                <p>Insert related papers here</p>
+            </div>
+            <div class="si-bottom-right">
+                <p>Insert related papers here</p>
+            </div>
+        </div>
+    </div>
+        <div class="overlay" id="overlay2">
+            <div class="popup" id="popup2">
+                <img src="https://i.ibb.co/qr3Gjmx/BSA-Logo.png">
+                <h2>Read more</h2>
+                <button type="button" onclick="closePopup()"></button>
+            </div>  
+            <div class="slidein-left" id="slideinlf">
+                <button type="button" onclick="closeSlideinLeft()">← Back</button>
+                <div class="si-top-left">
+                    <p>Insert related papers here</p>
+                </div>
+                <div class="si-middle-left">
+                    <p>Insert related papers here</p>
+                </div>
+                <div class="si-bottom-left">
+                    <p>Insert related papers here</p>
+                </div>
+            </div>
+        </div>
+    <div class="body" id="body">
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="min-width: 100%;">
+            <div class="container">
+                <a class="navbar-brand" href = "index">Byte Size Arxiv</a>
+                <div class="searchDropdown" style="min-width: 80%; height: 90%">
+                    <a href='/index' class="sdropbtn nav-link">Back to Home</a>
+                        <!-- Categories widget-->
+                     
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Byte Size Arxiv</h1>
+                    <p class="lead mb-0">Papers made digestable</p>
+                </div>
+                <div class="suggestDropdown" style="max-width: 30%">
+                    <a onclick="suggestDrop()" class=" btn btn-secondary">Computers in Society</a>
+                    <div id="suggestDrop" class="suggestDrop-content card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Reccomended Categories:
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Computers in Society</li>
+                                    <li class="list-group-item">Computer Science and Game Theory</li>
+                                    <li class="list-group-item">Databases</li>
+                                </ul>
+                            </li>
+                            
+                            <li class="list-group-item"><a onclick="searchDrop()" class=" btn btn-secondary">Show All</a></li>
+                        </ul>
+                    </div> 
+                </div>
+                
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <h1> Showing results for: {{ query }}</h1>
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"></a>
+                        <div class="card-body" id = "cb1">
+                            <a class="small text-muted right" href = {{links1}}></a>
+                            <div class="small text-muted">{{dates1}}</div>
+                            <h2 class="card-title">{{ title1 }}</h2>
+                            <p class="card-text">
+                                <span class = 'card-read'>
+                                    {{prompt_summary1}}
+                                </span>
+                                <span class = "card-read-more" id = "rm1"> {{abstracts1}}  <br>
+                                    <br>
+                                    Authors: {{authors1}}
+                                    <img src="static\assets\4.png" alt = "">
+                                </span>
+                            </p>
+                            <button class="btn btn-primary" id = "btn1">Read more →</button>
+                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
+                        </div>
+                    </div>
+                    <!-- Nested row for non-featured blog posts-->
+                    <div class="nested-row" id="nestedrow">    
+                        <div class="row" id="rowtocopy">
+                                <!-- Blog post-->
+                                <div class = "col-lg-6">
+                                    <div class="card-max mb-4"id = "cb2">
+                                        <a href="#!"></a>
+                                        <div class="card-body">
+                                            <a class="small text-muted right" href = {{links2}}></a>
+                                            <div class="small text-muted">{{dates2}}</div>
+                                            <h2 class="card-title h4">{{ title2 }}</h2>
+                                            <p class="card-text">
+                                                <span class = 'card-read' id = "r2">
+                                                    {{prompt_summary2}}
+                                                </span>
+                                                <span class = "card-read-more" id = "rm2"> {{abstracts2}}  <br>
+                                                    <br>
+                                                    Authors: {{authors2}}
+                                                    <img src="static\assets\3.png" alt = "">
+                                                </span>
+                                            </p>
+                                            <div class = "buttons">
+                                                <button class="btn btn-primary" id = "btn2">Read more →</button>
+                                                <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Blog post-->
+                                <div class = "col-lg-6">
+                                    <div class="card-max mb-4"id = "cb3">
+                                        <a href="#!"></a>
+                                        <div class="card-body">
+                                            <a class="small text-muted right" href = {{links3}}></a>
+                                            <div class="small text-muted">{{dates3}}</div>
+                                            <h2 class="card-title h4">{{ title3 }}</h2>
+                                            <p class="card-text">
+                                                <span class = 'card-read' id = "r3">
+                                                    {{prompt_summary3}}
+                                                </span>
+                                                <span class = "card-read-more" id = "rm3"> {{abstracts3}}  <br>
+                                                    <br>
+                                                    Authors: {{authors3}}
+                                                    <img src="static\assets\2.png" alt = "">
+                                                </span>
+                                            </p>
+                                            <div class = "buttons">
+                                                <button class="btn btn-primary" id = "btn3">Read more →</button>
+                                                <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <!-- Blog post-->
+                            <div class = "col-lg-6">
+                                <div class="card-max mb-4"id = "cb4">
+                                    <a href="#!"></a>
+                                    <div class="card-body">
+                                        <a class="small text-muted right" href = {{links4}}></a>
+                                        <div class="small text-muted">{{dates4}}</div>
+                                        <h2 class="card-title h4">{{ title4 }}</h2>
+                                        <p class="card-text">
+                                            <span class = 'card-read' id = "r4">
+                                                {{prompt_summary4}}
+                                            </span>
+                                            <span class = "card-read-more" id = "rm4"> {{abstracts4}}  <br>
+                                                <br>
+                                                Authors: {{authors4}}
+                                                <img src="static\assets\1.png" alt = "">
+                                            </span>
+                                        </p>
+                                        <div class = "buttons">
+                                            <button class="btn btn-primary" id = "btn4">Read more →</button>
+                                            <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Blog post-->
+                            <div class = "col-lg-6">
+                                <div class="card-max mb-4"id = "cb5">
+                                    <a href="#!"></a>
+                                    <div class="card-body">
+                                        <a class="small text-muted right" href = {{links5}}></a>
+                                        <div class="small text-muted">{{dates5}}</div>
+                                        <h2 class="card-title h4">{{ title5 }}</h2>
+                                        <p class="card-text">
+                                            <span class = 'card-read' id = "r5">
+                                                {{prompt_summary5}}
+                                            </span>
+                                            <span class = "card-read-more" id = "rm5"> {{abstracts5}}  <br>
+                                                <br>
+                                                Authors: {{authors5}}
+                                                <img src="static\assets\0.png" alt = "">
+                                            </span>
+                                        </p>
+                                        <div class = "buttons">
+                                            <button class="btn btn-primary" id = "btn5">Read more →</button>
+                                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination-->
+                    <nav aria-label="Pagination">
+                        <hr class="my-0" />
+                        <ul class="pagination justify-content-center my-4">
+                        </ul>
+                    </nav>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+    </div>
+</html>
