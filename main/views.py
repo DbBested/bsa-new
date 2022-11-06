@@ -8,7 +8,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from main.related import get_similar
 from main.summarization import summarize_function
-dir_path = 'papers/'
 paper_count = 7
 
 titles = [""] * paper_count
