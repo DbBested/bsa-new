@@ -1,1 +1,1 @@
-web: gunicorn did_django_schedule_jobs.wsgi
+web: gunicorn did_django_schedule_jobs.wsgi --log-file -
