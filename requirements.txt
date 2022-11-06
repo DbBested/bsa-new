@@ -78,7 +78,7 @@ scipy==1.5.2
 sendgrid==6.4.8
 sentence-transformers==2.2.2
 sentencepiece==0.1.97
-sgmllib3k
+sgmllib3k @ file:///Users/ktietz/demo/mc3/conda-bld/sgmllib3k_1630650258356/work
 six==1.15.0
 sklearn==0.0
 sniffio==1.3.0
