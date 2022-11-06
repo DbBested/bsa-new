@@ -80,7 +80,7 @@ threadpoolctl==2.1.0
 tokenizer==2.1.0
 tokenizers==0.13.1
 toolwrapper==2.1.0
-torch==1.11.0	+cpu 
+torch==1.11.0+cpu 
 torchvision==0.12.0+cpu
 tqdm==4.64.1
 transformers==4.24.0
