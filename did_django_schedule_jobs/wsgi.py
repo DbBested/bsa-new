@@ -2,5 +2,5 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'did_django_schedule_jobs-main.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'did_django_schedule_jobs.settings'
 application = get_wsgi_application()
