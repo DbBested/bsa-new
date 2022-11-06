@@ -1,12 +1,97 @@
-# did_django_schedule_jobs
-Django project that demonstrates how to shchedule job in Django
-
-1) cd to development directory
-2) mkvirtualenv did_django_schedule_jobs
-3) mkdir did_django_schedule_jobs
-4) clone repository to new directory
-5) pip install -r requirements.txt
-
-6) python manage.py runserver
-7) https://localhost:8000 - Bob's your uncle!! 
-
+anyio==3.6.2
+APScheduler==3.6.3
+arrow==1.2.3
+arxiv==1.4.2
+asgiref==3.5.2
+binaryornot==0.4.4
+certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
+chardet==5.0.0
+click==8.1.3
+colorama==0.4.5
+cookiecutter==1.7.3
+decouple==0.0.7
+dj-database-url==1.0.0
+Django==4.1.3
+django-cors-headers==3.5.0
+django-facebook-pixel-code==0.0.2
+django-filter==2.3.0
+django-infinite-scroll==0.1.7
+django-latexify==0.3
+django-mathjax==0.0.8
+django-tailwind==2.2.2
+djangorestframework==3.14.0
+docopt==0.6.2
+feedparser==6.0.10
+filelock==3.8.0
+grpcio==1.50.0
+grpcio-tools==1.50.0
+gunicorn==20.0.4
+h11==0.12.0
+h2==4.1.0
+hpack==4.0.0
+httpcore==0.15.0
+httpx==0.23.0
+huggingface-hub==0.10.1
+hyperframe==6.0.1
+idna==2.10
+importlib-metadata==5.0.0
+Jinja2==3.1.2
+jinja2-time==0.2.0
+joblib==1.2.0
+jsonfield==3.1.0
+MarkupSafe==2.1.1
+mosestokenizer==1.1.0
+nltk==3.7
+npm==0.1.1
+numpy==1.23.4
+opencv-python==4.6.0.66
+openfile==0.0.7
+openpyxl==3.0.10
+optional-django==0.1.0
+packaging==21.3
+pandas-stubs==1.2.0.62
+Pillow==9.3.0
+poyo==0.5.0
+protobuf==4.21.9
+psycopg2==2.9.3
+psycopg2-binary==2.9.3
+pydantic==1.10.2
+pyparsing==3.0.9
+python-dateutil==2.8.1
+python-http-client==3.3.1
+python-slugify==6.1.2
+pytz==2021.1
+PyYAML==6.0
+qdrant-client==0.11.0
+regex==2022.10.31
+requests==2.25.1
+rfc3986==1.5.0
+scikit-learn==1.1.3
+scipy==1.9.3
+sendgrid==6.4.8
+sentence-transformers==2.2.2
+sentencepiece==0.1.97
+sgmllib3k @ file:///Users/ktietz/demo/mc3/conda-bld/sgmllib3k_1630650258356/work
+six==1.15.0
+sniffio==1.3.0
+soupsieve==2.3.2.post1
+sqlparse==0.4.3
+starkbank-ecdsa==1.1.0
+text-unidecode==1.3
+threadpoolctl==2.1.0
+tokenizer==2.1.0
+tokenizers==0.13.1
+toolwrapper==2.1.0
+torch==1.13.0
+torchvision==0.14.0
+tqdm==4.64.1
+transformers==4.24.0
+typing_extensions==4.4.0
+tzdata==2022.6
+tzlocal==2.1
+uctools==1.3.0
+urllib3==1.26.4
+whitenoise==5.2.0
+wincertstore==0.2
+xlrd==1.2.0
+zipp==3.8.1
