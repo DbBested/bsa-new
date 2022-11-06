@@ -2,17 +2,9 @@
 from re import L
 from unicodedata import category
 from django.conf import settings
-
-import urllib.request as urllib2
-from main.views import titles, abstracts, tfidf_summaries
 from main.summarization import sent_tokenize, _create_frequency_matrix, _create_tf_matrix, _create_documents_per_words, _create_idf_matrix, _create_tf_idf_matrix, _score_sentences, _find_average_score, _generate_summary
-import openai 
 import arxiv
-# import fitz
 import os
-import glob
-from PIL import Image
-import io
 
 # Now this script or any imported module can use any part of Django it needs.
 
