@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'did_django_schedule_jobs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dd2dm45s7o04eg',
-        'USER': 'pbbrujifesangv',
-        'PASSWORD': '14bf9fdb738c46f4cad32e699b5833fd1db1d46e83e982d5c31f13f0ecb971f6',
-        'HOST': 'ec2-3-219-135-162.compute-1.amazonaws.com',
+        'NAME': 'Papers',
+        'USER': 'postgres',
+        'PASSWORD': 'admin123',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
