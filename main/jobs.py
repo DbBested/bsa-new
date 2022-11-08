@@ -61,6 +61,7 @@ def schedule_api():
 	from main.models import Papers
 	import nltk
 	nltk.download('punkt')
+	nltk.download('stopwords')
 	print("running")
 	for i in range(1,155):
 		search = arxiv.Search(	
