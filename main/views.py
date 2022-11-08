@@ -61,7 +61,7 @@ def index(request):
 	else:
 		papers = Papers.objects.all()
 		
-	papers = papers.order_by('-id')
+	papers = papers.order_by('-date')
 	print(papers[0].id)
 	for i in range(0, len(papers)):
 		papers[i].date = papers[i].date[0:10]
