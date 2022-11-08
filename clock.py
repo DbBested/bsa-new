@@ -7,7 +7,7 @@ from datetime import date
 scheduler = BlockingScheduler()
 
 
-@scheduler.scheduled_job('interval', minutes=3)
+@scheduler.scheduled_job('interval', hours=3)
 def timed_job():
     schedule_api()
 
