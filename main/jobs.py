@@ -59,6 +59,8 @@ def schedule_api():
 	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "did_django_schedule_jobs.settings")
 	django.setup()
 	from main.models import Papers
+	import nltk
+	nltk.download('punkt')
 	print("running")
 	for i in range(1,155):
 		search = arxiv.Search(	
