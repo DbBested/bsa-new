@@ -56,12 +56,12 @@ paperFromEachCat = 30
 
 def schedule_api():
 	import django 
-	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "did_django_schedule_jobs-main.settings")
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "did_django_schedule_jobs.settings")
 	django.setup()
 	from main.models import Papers
 	print("running")
 	for i in range(1,155):
-		search = arxiv.Search(
+		search = arxiv.Search(	
 				query=topics[i],
 				max_results = paperFromEachCat,
 				sort_by = arxiv.SortCriterion.SubmittedDate
