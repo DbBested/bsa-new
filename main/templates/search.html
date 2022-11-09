@@ -1,7 +1,29 @@
 <!DOCTYPE html>
+{%load post_tags%}
+{% load static %}
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <script async='async' src='https://www.googletagmanager.com/gtag/js?id=G-CPBBVHF1EC'></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag(&#39;js&#39;, new Date());
+    
+            gtag(&#39;config&#39;, &#39;G-CPBBVHF1EC&#39;);
+        </script>
+            
+            <!-- Hotjar Tracking Code for https://bsattfidfsdfsdfsdf.blogspot.com/ -->
+            <script>
+                (function(h,o,t,j,a,r){
+                    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                    h._hjSettings={hjid:3203963,hjsv:6};
+                    a=o.getElementsByTagName(&#39;head&#39;)[0];
+                    r=o.createElement(&#39;script&#39;);r.async=1;
+                    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                    a.appendChild(r);
+                })(window,document,&#39;https:\/\/static.hotjar.com/c/hotjar-&#39;,&#39;.js?sv=&#39;);
+            </script>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -9,9 +31,12 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="https://i.ibb.co/qr3Gjmx/BSA-Logo.png"/>
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="static/styles.css">
+        <!-- Other Javascript files-->
         <script src="static/js/jquery-3.2.1.min.js"></script>
+        <script src="static/js/jquery.waypoints.min.js"></script>
         <script src="/static/js/infinite.min.js"></script>
-        <link rel="stylesheet" href="static/searchstyles.css">
+        <!-- Mathjax Latex rendering -->
         <script defer>
             MathJax = {
                 tex:{
@@ -23,7 +48,10 @@
             }
         </script> 
         <script id="MathJax"  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        
+        
     </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="overlay" id="overlay1">
         <div class="popup" id="popup1">
             <img src="https://i.ibb.co/qr3Gjmx/BSA-Logo.png">
@@ -43,40 +71,433 @@
             </div>
         </div>
     </div>
-        <div class="overlay" id="overlay2">
-            <div class="popup" id="popup2">
-                <img src="https://i.ibb.co/qr3Gjmx/BSA-Logo.png">
-                <h2>Read more</h2>
-                <button type="button" onclick="closePopup()"></button>
-            </div>  
-            <div class="slidein-left" id="slideinlf">
-                <button type="button" onclick="closeSlideinLeft()">← Back</button>
-                <div class="si-top-left">
-                    <p>Insert related papers here</p>
-                </div>
-                <div class="si-middle-left">
-                    <p>Insert related papers here</p>
-                </div>
-                <div class="si-bottom-left">
-                    <p>Insert related papers here</p>
-                </div>
+
+    <div class="overlay" id="overlay2">
+        <div class="popup" id="popup2">
+            <img src="https://i.ibb.co/qr3Gjmx/BSA-Logo.png">
+            <h2>Read more</h2>
+            <button type="button" onclick="closePopup()"></button>
+        </div>  
+        <div class="slidein-left" id="slideinlf">
+            <button type="button" onclick="closeSlideinLeft()">← Back</button>
+            <div class="si-top-left">
+                <p>Insert related papers here</p>
+            </div>
+            <div class="si-middle-left">
+                <p>Insert related papers here</p>
+            </div>
+            <div class="si-bottom-left">
+                <p>Insert related papers here</p>
             </div>
         </div>
+    </div>
+
+
+
+
+
     <div class="body" id="body">
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="min-width: 100%;">
             <div class="container">
                 <a class="navbar-brand" href = "index">Byte Size Arxiv</a>
                 <div class="searchDropdown" style="min-width: 80%; height: 90%">
-                    <a href='/index' class="sdropbtn nav-link">Back to Home</a>
+                    <a onclick="searchDrop()" class="sdropbtn nav-link">Browse Categories</a>
+                    <div id="sdropdown" class="sdropdown-content show col-md-12"> <!-- Search widget-->
+                        <div class="card md-12">
+                            <div class="card-header">Search</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <form method = "get" action = "/search"> 
+                                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" name="query"/>
+                                        <button type="submit" class="btn btn-primary" id="button-search">Go!</button>  
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Categories widget-->
+                       
+                        <div class="card md-12">
+                            <div class="card-header">Categories</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6"> <!-- Possibly copy the arxiv categories page-->
+                                        <ul class="list-unstyled mb-0">
+                                            
+                                            <!--Mathematical Physics-->
+
+                                            <li>
+                                                <div class="mathpDropdown categs">
+                                                    <a onclick="mathpDrop()" class="mathpdropbtn btn btn-secondary">Mathematical Physics Topics</a>
+                                                    <div id="mathpdropdown" class="mathpdropdown-content show">
+                                                        <ul><li><a href='#' onclick="addUrlParameter('category', 'math-ph');">Mathematical Physics</a></li></ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+
+                                            <!--Nonlinear Sciences-->
+                                            <li>
+                                                <div class="nsDropdown categs">
+                                                    <a onclick="nsDrop()" class="nsdropbtn btn btn-secondary">Nonlinear Sciences Topics</a>
+                                                    <div id="nsdropdown" class="nsdropdown-content show">
+                                                        <ul>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'nlin.AO');">Adaptation and Self-Organizing</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'nlin.CD');">Chaotic Dynamics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'nlin.CG');">Cellular Automata and Lattice</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'nlin.PS');">Pattern Formation and Solitons</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'nlin.SI');">Exactly Solvable and Integrable Sytems</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+
+                                            <!--Nuclear Experiment-->
+                                            <li>
+                                                <div class="neDropdown categs">
+                                                    <a onclick="neDrop()" class="nedropbtn btn btn-secondary">Nuclear Experiment Topics</a>
+                                                    <div id="nedropdown" class="nedropdown-content show">
+                                                        <ul><li><a href='#' onclick="addUrlParameter('category', 'nucl-ex');">Nuclear Experiment</a></li></ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            
+
+                                            <!--Nuclear Theory-->
+                                            <li>
+                                                <div class="ntDropdown categs">
+                                                    <a onclick="ntDrop()" class="ntdropbtn btn btn-secondary">Nuclear Theory Topics</a>
+                                                    <div id="ntdropdown" class="ntdropdown-content show">
+                                                        <ul><li><a href='#' onclick="addUrlParameter('category', 'nucl-th');">Nuclear Theory</a></li> </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+
+                                            <!--Physics-->
+                                            <li>
+                                                <div class="phyDropdown categs">
+                                                    <a onclick="phyDrop()" class="phydropbtn btn btn-secondary">Physics Topics</a>
+                                                    <div id="phydropdown" class="phydropdown-content show">
+                                                        <ul>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.acc-ph');">Accelerator Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.ao-ph');">Atmospheric and Oceanic Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.app-ph');">Applied Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.atm-clus');">Atomic and Molecular Clusters</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.atom-ph');">Atomic Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.bio-ph');">Biological Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.chem-ph');">Chemical Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.class-ph');">Classical Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.comp-ph');">Computational Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.data-an');">Data Analysis, Statistics and Probability</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.ed-ph');">Physics Education</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.flu-dyn');">Fluid Dynamics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.gen-ph');">General Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.geo-ph');">Geophysics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.hist-ph');">History and Philosophy of Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.ins-det');">Instrumentation and Detectors</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.med-ph');">Medical Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.optics');">Optics</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.plasm-ph');">Plasma Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.pop-ph');">Popular Physics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.soc-ph');">Physics and Society</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'physics.space-ph');">Space Physics</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                         
+
+                                            <!--Quantum Physics-->
+                                            <li>
+                                                <div class="qpDropdown categs">
+                                                    <a onclick="qpDrop()" class="qpdropbtn btn btn-secondary">Quantum Physics Topics</a>
+                                                    <div id="qpdropdown" class="qpdropdown-content show">
+                                                        <ul><li><a href='#' onclick="addUrlParameter('category', 'quant-ph');">Quantum Physics</a></li></ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+                                            <!--Quantum Biology-->
+                                            <li>
+                                                <div class="qbDropdown categs">
+                                                    <a onclick="qbDrop()" class="qbdropbtn btn btn-secondary">Quantum Biology Topics</a>
+                                                    <div id="qbdropdown" class="qbdropdown-content show">
+                                                        <ul>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.BM');">Biomolecules</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.CB');">Cell Behavious</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.GN');">Genomics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.MN');">Molecular Networks</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.NC');">Neurons and Cognition</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.OT');">Other Quantitative Biology</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.PE');">Populations and Evolution</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.QM');">Quantitative Methods</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.SC');">Subcellular Processes</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-bio.TO');">Tissues and Organs</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+                                            <!--Quantitative Finance-->
+                                            <li>
+                                                <div class="qfDropdown categs">
+                                                    <a onclick="qfDrop()" class="qfdropbtn btn btn-secondary">Quantitative Finance Topics</a>
+                                                    <div id="qfdropdown" class="qfdropdown-content show">
+                                                        <ul>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.CP');">Computational Finance</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.EC');">Economics</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.GN');">General Finance</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.MF');">Mathematical Finance</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.PM');">Portfolio Management</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.PR');">Pricing of Securities</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.RM');">Risk Management</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.ST');">Statistical Finance</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'q-fin.TR');">Trading and Market Microstructure</a></li> 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+                                            <!--Statistics-->
+                                            <li>
+                                                <div class="staDropdown categs">
+                                                    <a onclick="staDrop()" class="stadropbtn btn btn-secondary">Statistics Topics</a>
+                                                    <div id="stadropdown" class="stadropdown-content">
+                                                        <ul>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.AP');">Applications</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.CO');">Computations</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.ME');">Methodology</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.ML');">Machine Learning</a></li> 
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.OT');">Other Statistics</a></li>
+                                                            <li><a href='#' onclick="addUrlParameter('category', 'stat.TH');">Statistics Theory</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <!--Computer Science-->
+                                           <li><div class="csDropdown categs">
+                                            <a onclick="csDrop()" class="csdropbtn btn btn-secondary">Computer Science Topics</a>
+                                            <div id="csdropdown" class="csdropdown-content show">
+                                                <ul>
+                                                    <li><a href='#'onclick="addUrlParameter('category', 'cs.AI');">Artificial Intelligence</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CE');">Computational Engineering</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CV');">Computer Vision and Pattern Recognition</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.AR');">Hardware Architechure</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CC');">Computational Complexity</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CG');">Computational Geometry</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CL');">Computation and Language</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CR');">Cryptography and Security</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.CY');">Computers and Society</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DB');">Databases</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DC');">Distributed, Parallel, and Cluster Computing</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DM');">Discrete Mathematics</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DS');">Machine Learning</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DL');">Digital Libraries</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.DS');">Data Structures and Algorithms</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.ET');">Emerging Technologies</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.FL');">Formal Languages and Automata Theory</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.GL');">General Literature</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.GR');">Graphics</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.GT');">Computer Science and Game Theory</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.HC');">Human-Computer Interaction</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.IR');">Information Retrieval</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.IT');">Information Theory</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.LG');">Machine Learning</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.LO');">Logic in Computer Science</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.MA');">Multiagent Systems</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.MM');">Multimedia</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.MS');">Mathematical Software</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.NA');">Numerical Analysis</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.NE');">Neural and Evolutionary Computing </a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.NI');">Networking and Internet Architechure</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.OH');">Other Computer Science </a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.PF');">Performace</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.PL');">Programming Languages</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.RO');">Robotics</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.SC');">Symbolic Computation</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.SD');">Sound</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.SE');">Software Engineering</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.SI');">Social and Information Networks</a></li>
+                                                    <li><a href='#' onclick="addUrlParameter('category', 'cs.SY');">Systems and Control</a></li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div></li> 
+                                        
+                                        
+                                        <!--Economics-->
+
+                                        <li>
+                                            <div class="eDropdown categs">
+                                                <a onclick="eDrop()" class="edropbtn btn btn-secondary">Economics Topics</a>
+                                                <div id="edropdown" class="edropdown-content show">
+                                                    <ul><li><a href='#' onclick="addUrlParameter('category', 'econ.EM');">Econometrics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'econ.GN');">General Economics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'econ.TH');">Theoretical Economics</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                        
+
+                                        <!--Electrical Engineering and Systems Science-->
+                                        <li>
+                                            <div class="eessDropdown categs">
+                                                <a onclick="eessDrop()" class="eessdropbtn btn btn-secondary">Electrical Engineering and Systems Sciences Topics</a>
+                                                <div id="eessdropdown" class="eessdropdown-content show">
+                                                    <ul> <li><a href='#' onclick="addUrlParameter('category', 'eess.AS');">Audio Speech Processing</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'eess.IV');">Image and Video Processing</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'eess.SP');">Signal Processing</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'eess.SY');">Systems and Control</a></li>
+                                                    </ul>
+                                                   
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+
+
+                                        <!--Mathematics-->
+                                        <li>
+                                            <div class="mDropdown categs">
+                                                <a onclick="mDrop()" class="mdropbtn btn btn-secondary">Mathematics Topics</a>
+                                                <div id="mdropdown" class="mdropdown-content">
+                                                    <ul>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.AC');">Communitative Algebra</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.AG');">Algebraic Geometry</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.AP');">Analysis of PDEs</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.AT');">Algebraic Topology</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.CA');">Classical Analysis and ODEs</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.CO');">Combinatorics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.CT');">Category Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.CV');">Complex Variables</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.DG');">Differential Geometry</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.DS');">Dynamical Systems</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.FA');">Functional Analysis</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.GM');">General Mathematics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.GN');">General Topology</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.GR');">Group Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.GT');">Geometric Topology</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.HO');">History and Overview</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.IT');">Information Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.KT');">K-Theory and Homology</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.LO');">Logic</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.MG');">Metric Geometry</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.MP');">Mathematical Physics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.NA');">Numerical Analysis</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.NT');">Number Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.OA');">Operator Algebras</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.OC');">Optimization and Control </a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.PR');">Probability</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.QA');">Quantum Algebra</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.RA');">Rings and Algebras</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.RT');">Representation Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.SG');">Sympletic Geometry</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.SP');">Spectral Theory</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'math.ST');">Statistics Theory</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+
+                                        <!--Astrophysics-->
+                                        <li>
+                                            <div class="apDropdown categs">
+                                                <a onclick="apDrop()" class="apdropbtn btn btn-secondary">Astrophysics Topics</a>
+                                                <div id="apdropdown" class="apdropdown-content show">
+                                                    <ul>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.CO');">Cosmology and Nongalactic Astrophysics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.EP');">Earth and Planetary Astrophysics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.GA');">Astrophysics of Galaxies</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.HE');">High Energy Astrophysical Phenomena</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.IM');">Instrumentation and Methods for Astrophysics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'astro-ph.SR');">Solar and Stellar Astrophysics</a></li> 
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                       
+
+                                        <!--Condensed Matter-->
+                                        <li>
+                                            <div class="cmDropdown categs">
+                                                <a onclick="cmDrop()" class="cmdropbtn btn btn-secondary">Condensed Matter Topics</a>
+                                                <div id="cmdropdown" class="cmdropdown-content show">
+                                                    <ul>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.dis-nn');">Disordered Systems and Neural Networks</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.mes-hall');">Mesoscale and Nanoscale Physics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.mtrl-sci');">Materials Science</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.other');">Other Condensed Matter</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.quant-gas');">Quantum Gases</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.soft');">Soft Condensed Matter</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.stat-mech');">Statistical Mechanics</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.str-el');">Strongly Correlated Electrons</a></li>
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'cond-mat.supr-con');">Superconductivity</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                       
+                                        
+                                        <!--General Relativity and Quantum Cosmology-->
+                                        <li>
+                                            <div class="grqcDropdown categs">
+                                                <a onclick="grqcDrop()" class="grqcdropbtn btn btn-secondary">General Relativity and Quantum Cosmology Topics</a>
+                                                <div id="grqcdropdown" class="grqcdropdown-content show">
+                                                    <ul> <li><a href='#' onclick="addUrlParameter('category', 'gr-qc');">General Relativity and Quantum Cosmology</a></li></ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                       
+
+                                        <!--HIGH ENERGY PHYSICS - EXPERIMENT-->
+                                        <li>
+                                            <div class="hepDropdown categs">
+                                                <a onclick="hepDrop()" class="hepdropbtn btn btn-secondary">High Energy Physics Topics</a>
+                                                <div id="hepdropdown" class="hepdropdown-content show">
+                                                    <ul> 
+                                                        <!--HIGH ENERGY PHYSICS - EXPERIMENT-->
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'hep-ex');">High Energy Physics - Experiment</a></li>
+                                                             <!--High Energy Physics - Lattice-->
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'hep-lat');">High Energy Physics - Lattice</a></li>
+
+                                                        <!--High Energy Physics - Phenomenology-->
+                                                         <li><a href='#' onclick="addUrlParameter('category', 'hep-ph');">High Energy Physics - Phenomenology</a></li>
+
+                                                         <!--High Energy Physics - Theory-->
+                                                        <li><a href='#' onclick="addUrlParameter('category', 'hep-th');">High Energy Physics - Theory</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                      
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                     </ul>
                 </div>
@@ -90,14 +511,14 @@
                     <p class="lead mb-0">Papers made digestable</p>
                 </div>
                 <div class="suggestDropdown" style="max-width: 30%">
-                    <a onclick="suggestDrop()" class=" btn btn-secondary">Computers in Society</a>
-                    <div id="suggestDrop" class="suggestDrop-content card">
+                    <a onclick="suggestDrop()" class=" btn btn-secondary">Here are some reccomended categories:</a>
+                    <div id="suggestDrop" class="suggestDrop-content show card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Reccomended Categories:
+                            <li class="list-group-item">Recommended Categories:
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Computers in Society</li>
-                                    <li class="list-group-item">Computer Science and Game Theory</li>
-                                    <li class="list-group-item">Databases</li>
+                                    <li class="list-group-item"><a href='#' onclick="addUrlParameter('category', 'cs.CY');">Computers and Society</a></li>
+                                    <li class="list-group-item"><a href='#' onclick="addUrlParameter('category', 'cs.RO');">Robotics</a></li>
+                                    <li class="list-group-item"><a href='#' onclick="addUrlParameter('category', 'q-fin.TR');">Trading and Market Microstructure</a></li>
                                 </ul>
                             </li>
                             
@@ -113,7 +534,6 @@
             <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <h1> Showing results for: {{ query }}</h1>
                     <!-- Featured blog post-->
                     <div class="card mb-4">
                         <a href="#!"></a>
@@ -128,16 +548,14 @@
                                 <span class = "card-read-more" id = "rm1"> {{abstracts1}}  <br>
                                     <br>
                                     Authors: {{authors1}}
-                                    <img src="static\assets\4.png" alt = "">
                                 </span>
                             </p>
                             <button class="btn btn-primary" id = "btn1">Read more →</button>
-                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                         </div>
                     </div>
                     <!-- Nested row for non-featured blog posts-->
-                    <div class="nested-row" id="nestedrow">    
-                        <div class="row" id="rowtocopy">
+                    <div class="nested-row">    
+                        <div class="row">
                                 <!-- Blog post-->
                                 <div class = "col-lg-6">
                                     <div class="card-max mb-4"id = "cb2">
@@ -153,12 +571,10 @@
                                                 <span class = "card-read-more" id = "rm2"> {{abstracts2}}  <br>
                                                     <br>
                                                     Authors: {{authors2}}
-                                                    <img src="static\assets\3.png" alt = "">
                                                 </span>
                                             </p>
                                             <div class = "buttons">
                                                 <button class="btn btn-primary" id = "btn2">Read more →</button>
-                                                <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
                                             </div>
                                         </div>
                                     </div>
@@ -178,16 +594,15 @@
                                                 <span class = "card-read-more" id = "rm3"> {{abstracts3}}  <br>
                                                     <br>
                                                     Authors: {{authors3}}
-                                                    <img src="static\assets\2.png" alt = "">
                                                 </span>
                                             </p>
                                             <div class = "buttons">
                                                 <button class="btn btn-primary" id = "btn3">Read more →</button>
-                                                <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="row">
                             <!-- Blog post-->
@@ -205,12 +620,10 @@
                                             <span class = "card-read-more" id = "rm4"> {{abstracts4}}  <br>
                                                 <br>
                                                 Authors: {{authors4}}
-                                                <img src="static\assets\1.png" alt = "">
                                             </span>
                                         </p>
                                         <div class = "buttons">
                                             <button class="btn btn-primary" id = "btn4">Read more →</button>
-                                            <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
                                         </div>
                                     </div>
                                 </div>
@@ -230,32 +643,135 @@
                                             <span class = "card-read-more" id = "rm5"> {{abstracts5}}  <br>
                                                 <br>
                                                 Authors: {{authors5}}
-                                                <img src="static\assets\0.png" alt = "">
                                             </span>
                                         </p>
                                         <div class = "buttons">
                                             <button class="btn btn-primary" id = "btn5">Read more →</button>
-                                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Infinite Rows-->
+                            <div class="infinite-container">
+                                {%for paper1, paper2 in Papers%}
+                                
+                                <div class="row infinite-item">
+                                    
+                                    <!-- Blog post-->
+                                    <div class = "col-lg-6" id = "col1">
+                                        <div class="card-max mb-4"id = "cb4">
+                                            <a href="#!"></a>
+                                            
+                                            <div class="card-body">
+                                                <a class="small text-muted right" href = {{ paper1.link}}></a>
+                                                <div class="small text-muted">{{ paper1.date}}</div>
+                                                <h2 class="card-title h4">{{ paper1.title }}</h2>
+                                                <p class="card-text">
+                                                    <span class = 'card-read' id = "r4">
+                                                        {{ paper1.tfidfsummary}}
+                                                    </span>
+                                                    <span class = "card-read-more" id = "rm4"> {{ paper1.abstract}}  <br>
+                                                        <br>
+                                                        Authors: {{ paper1.authors}}
+                                                    </span>
+                                                </p>
+                                                <div class = "buttons">
+                                                    <button class="btn btn-primary" onclick="readMore(this)">Read more →</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Blog post-->
+                                    <div class = "col-lg-6">
+                                        <div class="card-max mb-4"id = "cb5">
+                                            <a href="#!"></a>
+                                            <div class="card-body ">
+                                                <a class="small text-muted right " href = {{ paper2.link}}></a>
+                                                <div class="small text-muted">{{ paper2.date}}</div>
+                                                <h2 class="card-title h4">{{ paper2.title }}</h2>
+                                                <p class="card-text">
+                                                    <p class = 'card-read' id = "r5">
+                                                        {{ paper2.tfidfsummary }}
+                                                    </p>
+                                                    <p class = "card-read-more" id = "rm5"> {{ paper2.abstract }}  <br>
+                                                        <br>
+                                                        Authors: {{ paper2.authors }}
+                                                    </p>
+                                                </p>
+                                                <div class = "buttons">
+                                                    <button class="btn btn-primary" onclick="readMoreR(this)">Read more →</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% if Papers.has_next %}
+                                <a class="infinite-more-link" href="?{% url_replace request 'page' Papers.next_page_number %}"></a>
+                            {% endif %}
+                        
+ 
+                        <script>
+                            var infinite = new Waypoint.Infinite({
+                                element: $('.infinite-container')[0],
+                                onAfterPageLoad:function()
+                                {
+                                    MathJax.typesetPromise();
+                                },
+                                offset: 'bottom-in-view'
+                            });
+                        </script>
+
+                        <!--Loading Animation-->
+                        <div class = "row">     
+                           
+                            <div class = "col-lg-6" id = "col1">
+                                <div class="card-max mb-4"id = "cb4">
+                                    <a href="#!"></a>
+                                    
+                                    <div class="card-body center">
+                                        <a class="small text-muted right"></a>
+                                        <div class="small text-muted"></div>
+                                        <h2 class="card-title h4"><div class="lds-dual-ring"></div></h2>
+                                        <p class="card-text">
+                                            <span class = 'card-read' id = "r4">
+
+                                            </span>
+                                            <span class = "card-read-more" id = "rm4">
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "col-lg-6">
+                                <div class="card-max mb-4"id = "cb5">
+                                    <a href="#!"></a>
+                                    <div class="card-body center">
+                                        <a class="small text-muted right "></a>
+                                        <div class="small text-muted"></div>
+                                        <h2 class="card-title h4"><div class="lds-dual-ring"></div></h2>
+                                        <p class="card-text">
+                                            <p class = 'card-read' id = "r5">
+                                            </p>
+                                            <p class = "card-read-more" id = "rm5"> 
+                                            </p>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                        </ul>
-                    </nav>
                 </div>
-                
             </div>
+                
+            
         </div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-        </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

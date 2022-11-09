@@ -6,7 +6,6 @@ from django.template import loader
 import os
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-from main.related import get_similar
 from main.summarization import summarize_function
 paper_count = 7
 
@@ -157,54 +156,95 @@ def about(request):
 def search(request):
 	from main.models import Papers
 	template = "search.html"
-	query = request.POST.get('query', None)
+	query = request.GET.get('query', None)
 	if query:
-		related_dict = get_similar(query)
+		related_dict = Papers.objects.filter(abstract__contains=query)
+	else:
+		return render(request, template)
+	if(request.GET.get('category', '') != ''):
+		print(request.GET.get('category', ''))
+		category = request.GET.get('category', '')
+		related_dict = related_dict.filter(category = request.GET.get('category', ''))
+	for i in range(0, len(related_dict)):
+		related_dict[i].date = related_dict[i].date[0:10]
+	finalPapers = []
+	array1 =[]
+	array2 = []
+	alternate = 0
+	for i in related_dict:
+		if(alternate%2 == 0):
+			array1.append(i)
+		else:
+			array2.append(i)
+		alternate += 1
+	if(len(array1) == len(array2)):
+		for i in range(0,len(array1)):
+			finalPapers.append([array1[i], array2[i]])
+	else:
+		for i in range(0,len(array1) - 1):
+			finalPapers.append([array1[i], array2[i]])
 	p_count=0
-	for paper in related_dict:
-		rtitles[p_count] = paper['title']
-		rabstracts[p_count] = paper['abstract']
-		rlinks[p_count] = 'https://arxiv.org/pdf/' + str(paper['id'])
-		rtfidf_summaries[p_count] = summarize_function(paper['abstract'])
+	for i in range(1, paper_count):
+		rtitles[i] = related_dict[i].title
+	for i in range(1, paper_count):
+		rabstracts[i] = related_dict[i].abstract
+	for i in range(1, paper_count):
+		rlinks[i] = related_dict[i].link
+	for i in range(1, paper_count):
+		rauthors[i] = related_dict[i].authors
+	for i in range(1, paper_count):
+		rtfidf_summaries[i] = related_dict[i].tfidfsummary
+	for i in range(1, paper_count):
+		rdates[i] = related_dict[i].date
 		# rauthors[p_count] = Papers.objects.get(title=paper['title']).authors
 		p_count+=1
+	print(finalPapers)
 	context = {
-		"title1" : rtitles[0],
-		"abstracts1" : rabstracts[0],
-		"prompt_summary1" : rtfidf_summaries[0],
-		"links1" : rlinks[0],
-		"authors1" : rauthors[0],
-		"dates1" : rdates[0],
-		"title2" : rtitles[1],
-		"abstracts2" : rabstracts[1],
-		"prompt_summary2" : rtfidf_summaries[1],
-		"links2" : rlinks[1],
-		"authors2" : rauthors[1],
-		"dates2" : rdates[1],
-		"title3" : rtitles[2],
-		"abstracts3" : rabstracts[2],
-		"prompt_summary3" : rtfidf_summaries[2],
-		"links3" : rlinks[2],
-		"authors3" : rauthors[2],
-		"dates3" : rdates[2],
-		"title4" : rtitles[3],
-		"abstracts4" : rabstracts[3],
-		"prompt_summary4" : rtfidf_summaries[3],
-		"links4" : rlinks[3],
-		"authors4" : rauthors[3],
-		"dates4" : rdates[3],
-		"title5" : rtitles[4],
-		"abstracts5" : rabstracts[4],
-		"prompt_summary5" : rtfidf_summaries[4],
-		"links5" : rlinks[4],
-		"authors5" : rauthors[4],
-		"dates5" : rdates[4],
-		"title6" : rtitles[5],
-		"abstracts6" : rabstracts[5],
-		"prompt_summary6" : rtfidf_summaries[5],
-		"links6" : rlinks[5],
-		"authors6" : rauthors[5],
-		"dates6" : rdates[5],
+		"title1" : rtitles[1],
+		"abstracts1" : rabstracts[1],
+		"prompt_summary1" : rtfidf_summaries[1],
+		"links1" : rlinks[1],
+		"authors1" : rauthors[1],
+		"dates1" : rdates[1],
+		"title2" : rtitles[2],
+		"abstracts2" : rabstracts[2],
+		"prompt_summary2" : rtfidf_summaries[2],
+		"links2" : rlinks[2],
+		"authors2" : rauthors[2],
+		"dates2" : rdates[2],
+		"title3" : rtitles[3],
+		"abstracts3" : rabstracts[3],
+		"prompt_summary3" : rtfidf_summaries[3],
+		"links3" : rlinks[3],
+		"authors3" : rauthors[3],
+		"dates3" : rdates[3],
+		"title4" : rtitles[4],
+		"abstracts4" : rabstracts[4],
+		"prompt_summary4" : rtfidf_summaries[4],
+		"links4" : rlinks[4],
+		"authors4" : rauthors[4],
+		"dates4" : rdates[4],
+		"title5" : rtitles[5],
+		"abstracts5" : rabstracts[5],
+		"prompt_summary5" : rtfidf_summaries[5],
+		"links5" : rlinks[5],
+		"authors5" : rauthors[5],
+		"dates5" : rdates[5],
+		"title6" : rtitles[6],
+		"abstracts6" : rabstracts[6],
+		"prompt_summary6" : rtfidf_summaries[6],
+		"links6" : rlinks[6],
+		"authors6" : rauthors[6],
+		"dates6" : rdates[6],
 	}
-	context['query']=query
-	return render(request, template, context)
+	page = request.GET.get('page', 1)
+	paginator = Paginator(finalPapers, 5)
+	try:
+		paperPag = paginator.page(page)
+	except PageNotAnInteger:
+		paperPag = paginator.page(1)
+	except EmptyPage:
+		paperPag = paginator.page(paginator.num_pages)
+
+	context = {**context, 'Papers':paperPag}
+	return render(request, template,context)

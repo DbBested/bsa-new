@@ -108,9 +108,9 @@
                             <div class="card-header">Search</div>
                             <div class="card-body">
                                 <div class="input-group">
-                                    <form method = "post" action = "/search" id = "systemForm"> {% csrf_token %}
-                                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" name="query" form = "systemForm"/>
-                                        <button type="submit" class="btn btn-primary" id="button-search" form ="systemForm">Go!</button>  
+                                    <form method = "get" action = "/search"> 
+                                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" name="query"/>
+                                        <button type="submit" class="btn btn-primary" id="button-search">Go!</button>  
                                     </form>
                                 </div>
                             </div>
@@ -551,7 +551,6 @@
                                 </span>
                             </p>
                             <button class="btn btn-primary" id = "btn1">Read more →</button>
-                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                         </div>
                     </div>
                     <!-- Nested row for non-featured blog posts-->
@@ -576,7 +575,6 @@
                                             </p>
                                             <div class = "buttons">
                                                 <button class="btn btn-primary" id = "btn2">Read more →</button>
-                                                <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
                                             </div>
                                         </div>
                                     </div>
@@ -600,7 +598,6 @@
                                             </p>
                                             <div class = "buttons">
                                                 <button class="btn btn-primary" id = "btn3">Read more →</button>
-                                                <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                                             </div>
                                         </div>
                                     </div>
@@ -627,7 +624,6 @@
                                         </p>
                                         <div class = "buttons">
                                             <button class="btn btn-primary" id = "btn4">Read more →</button>
-                                            <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
                                         </div>
                                     </div>
                                 </div>
@@ -651,7 +647,6 @@
                                         </p>
                                         <div class = "buttons">
                                             <button class="btn btn-primary" id = "btn5">Read more →</button>
-                                            <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                                         </div>
                                     </div>
                                 </div>
@@ -685,7 +680,6 @@
                                                 </p>
                                                 <div class = "buttons">
                                                     <button class="btn btn-primary" onclick="readMore(this)">Read more →</button>
-                                                    <button class="btn see-related" onclick="openSlideinLeft()">See related papers</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -709,7 +703,6 @@
                                                 </p>
                                                 <div class = "buttons">
                                                     <button class="btn btn-primary" onclick="readMoreR(this)">Read more →</button>
-                                                    <button class="btn see-related" onclick="openSlideinRight()">See related papers</button>
                                                 </div>
                                             </div>
                                         </div>

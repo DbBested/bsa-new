@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'whitenoise.runserver_nostatic',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
